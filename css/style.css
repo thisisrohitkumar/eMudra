@@ -60,7 +60,7 @@ body {
 }
 .from__select select, .to__select select {
   font-size: 18px;
-  width: 80px;
+  width: 60px;
   border: none;
   background: transparent;
   text-align: center;
@@ -85,6 +85,16 @@ body {
   cursor: pointer;
   font-size: 20px;
   outline: none;
+}
+
+@media screen and (max-width: 756px) {
+  .page__wrapper {
+    background-color: #392467;
+  }
+  .converter__container {
+    width: 100%;
+    max-width: 400px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

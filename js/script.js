@@ -1,6 +1,8 @@
 const convertBtn = document.querySelector(".convert__btn button");
 
-const imgURL = "https://flagsapi.com/BE/flat/32.png";
+const swap = document.querySelector(".convert__icon i")
+
+const imgURL = "https://flagsapi.com/INR/flat/32.png";
 
 const BASE_URL =
   "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
@@ -52,10 +54,24 @@ to.addEventListener("change", (evt) => {
   output.innerText = `1 USD = ${op} INR`;
 })();
 
-convertBtn.addEventListener("click", async () => {
+swap.addEventListener('click', () => {
+
+  //swapping currency codes
+  const temp = from.value
+  from.value = to.value
+  to.value = temp
+
+  //swapping country flag
+  const temp2 = fromFlag.getAttribute('src')
+  fromFlag.setAttribute('src', toFlag.getAttribute('src'))
+  toFlag.setAttribute('src', temp2)
+})
+
+const currencyConverter = async () => {
   const inputEle = document.querySelector(".converter__input input");
   if (inputEle.value === "") {
     output.innerText = "Amount is required for conversion";
+    convertBtn.innerText = 'Convert'
     return;
   }
   const inputAmt = Number(inputEle.value);
@@ -72,5 +88,11 @@ convertBtn.addEventListener("click", async () => {
 
   op = op.toFixed(2);
 
-  output.innerText = `1 ${fromCode.toUpperCase()} = ${op} ${toCode.toUpperCase()}`;
+  output.innerText = `${inputAmt} ${fromCode.toUpperCase()} = ${op} ${toCode.toUpperCase()}`;
+  convertBtn.innerText = 'Convert'
+}
+
+convertBtn.addEventListener("click", () => {
+  setTimeout(currencyConverter, 500)
+  convertBtn.innerText = 'Converting...'
 });
