@@ -74,7 +74,13 @@ const currencyConverter = async () => {
     convertBtn.innerText = 'Convert'
     return;
   }
-  const inputAmt = Number(inputEle.value);
+  let inputAmt = Number(inputEle.value);
+
+  if(inputAmt < 0){
+    inputAmt *= -1
+    inputEle.value = inputAmt
+  }
+
   const fromCode = document.querySelector(".from__select select").value;
   const toCode = document.querySelector(".to__select select").value;
 
