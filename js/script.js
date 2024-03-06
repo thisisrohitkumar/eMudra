@@ -56,7 +56,7 @@ to.addEventListener("change", (evt) => {
 
 swap.addEventListener('click', () => {
 
-  //swapping currency codes
+  //swapping currency codess
   const temp = from.value
   from.value = to.value
   to.value = temp
